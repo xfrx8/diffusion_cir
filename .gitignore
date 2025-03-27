@@ -1,0 +1,8 @@
+run*
+data*
+__pycache__*
+checkpoints_*
+wandb/*
+.idea/*
+checkpoints*
+.vscode
