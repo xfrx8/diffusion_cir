@@ -45,6 +45,18 @@ class CIRDataset(Dataset):
         self.amp_mean = np.mean(all_amplitudes)
         self.amp_std = np.std(all_amplitudes) + 1e-6
 
+        # ✅ 添加 cir_mean 和 cir_std（用于反标准化）
+        self.cir_mean = np.array([self.delay_mean, self.amp_mean, 0.0])
+        self.cir_std = np.array([self.delay_std, self.amp_std, 1.0])
+
+        # ✅ 自动保存为 .npz 文件（用于推理时调用）
+        import os
+        save_dir = "stats"
+        os.makedirs(save_dir, exist_ok=True)
+        np.savez(os.path.join(save_dir, "coord_stats.npz"), mean=self.coord_mean, std=self.coord_std)
+        np.savez(os.path.join(save_dir, "cir_stats.npz"), mean=self.cir_mean, std=self.cir_std)
+        print("[INFO] 坐标与 CIR 归一化参数已保存到 ./stats/")
+
     def __len__(self):
         return len(self.pids)
 

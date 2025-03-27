@@ -6,3 +6,4 @@ wandb/*
 .idea/*
 checkpoints*
 .vscode
+stats*
