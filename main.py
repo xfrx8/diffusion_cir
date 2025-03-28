@@ -6,12 +6,12 @@ from cir_dataset import CIRDataset
 
 def main():
     # 超参数
-    wandb_name = "run_1"
-    timesteps = 100
+    wandb_name = "run_2"
+    timesteps = 1000
     input_length = 20         # ✅ CIR 的时间长度（即 cir 的序列长度）
     cond_dim = 3              # ✅ 坐标维度
     batch_size = 32
-    epochs = 2000
+    epochs = 1000
     lr = 0.001
 
     config = {
